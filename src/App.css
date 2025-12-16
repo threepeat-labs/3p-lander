@@ -1,0 +1,110 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #000000 0%, #a7a7a7 100%);
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  color: white;
+  pointer-events: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.content p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.d-none {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .content h1 {
+    font-size: 2rem;
+  }
+
+  .content p {
+    font-size: 1rem;
+  }
+}
+
+/* Overlay Component Styles */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  /* Align to the right side */
+  align-items: center;
+  pointer-events: none;
+  /* Let clicks pass through to canvas */
+  z-index: 20;
+  padding: 2rem;
+  flex-direction: column;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  /* Very subtle white tint */
+  backdrop-filter: blur(10px);
+  /* Glass blur effect */
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 36px;
+  padding: 2rem;
+  max-width: 90vw;
+  corner-shape: squircle;
+  pointer-events: auto;
+  /* Re-enable clicks on the panel itself if needed */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.overlay-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.overlay-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  font-family: monospace;
+}
+
+@media (max-width: 768px) {
+  .overlay-container {
+    align-items: flex-end;
+    /* Bottom on mobile */
+  }
+
+  .glass-panel {
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
