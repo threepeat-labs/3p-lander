@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface OverlayTextProps {
     title: string
     content: string
