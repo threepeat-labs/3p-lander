@@ -9,10 +9,13 @@ export default function FloatingShapes() {
     const sphereRef = useRef<Mesh>(null)
     const torusRef = useRef<Mesh>(null)
 
-    const { viewportWidth, scaleFactor } = useResponsive()
+    const { viewportWidth, scaleFactor, isMobile } = useResponsive()
 
     // Calculate responsive positions
     const sideOffset = Math.max(2, viewportWidth / 2) // Ensure they don't get too close in very narrow views, but generally follow width
+
+    const yPosition = isMobile ? 5 : 0
+
 
     useFrame((_state, delta) => {
         if (octahedronRef.current) {
@@ -32,7 +35,7 @@ export default function FloatingShapes() {
     return (
         <group layers={10}>
 
-            <mesh ref={octahedronRef} position={[0, 0, -7]} scale={scaleFactor}>
+            <mesh ref={octahedronRef} position={[0, yPosition, -7]} scale={scaleFactor}>
                 <octahedronGeometry args={[2, 0]} />
                 <meshPhysicalMaterial
                     metalness={10}
@@ -40,7 +43,7 @@ export default function FloatingShapes() {
                     wireframe={false}
                     color="black" />
             </mesh>
-            <mesh ref={sphereRef} position={[-sideOffset, 0, -7]} scale={scaleFactor}>
+            <mesh ref={sphereRef} position={[-sideOffset, yPosition, -7]} scale={scaleFactor}>
                 <sphereGeometry args={[2, 32, 32]} />
                 <meshPhysicalMaterial
                     color="black"
@@ -50,7 +53,7 @@ export default function FloatingShapes() {
                     wireframe={true}
                 />
             </mesh>
-            <mesh ref={torusRef} position={[sideOffset, 0, -7]} scale={scaleFactor}>
+            <mesh ref={torusRef} position={[sideOffset, yPosition, -7]} scale={scaleFactor}>
                 <torusGeometry args={[2, 0.3, 16, 100]} />
                 <meshPhysicalMaterial
                     color="black"

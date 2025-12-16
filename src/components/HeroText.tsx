@@ -2,11 +2,13 @@ import { Text3D, Center } from '@react-three/drei'
 import { useResponsive } from '../hooks/useResponsive'
 
 export default function HeroText() {
-    const { scaleFactor } = useResponsive()
+    const { scaleFactor, isMobile } = useResponsive()
+
+    const yPosition = isMobile ? 2.5 : 0
 
     return (
         <group layers={0}>
-            <Center position={[0, 0, 1]} cacheKey={scaleFactor}>
+            <Center position={[0, yPosition, 1]} cacheKey={scaleFactor}>
                 <Text3D
                     font="/fonts/BBH_Bartle_Regular.json"
                     size={0.8 * scaleFactor}
